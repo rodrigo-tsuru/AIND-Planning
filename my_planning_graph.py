@@ -509,10 +509,10 @@ class PlanningGraph():
             for node_a2 in node_s2.parents:
                 if len(node_a2.mutex) > 0 and node_a1 in node_a2.mutex:
                     print("mutex parents")
-                    if node_s1 in node_a2.children and node_s2 in node_a2.children:
+                    if {node_s1, node_s2} <= node_a2.children:
                         #If one parent action can achieve both states, should NOT be inconsistent-support mutex, even if parent actions are themselves mutex
-                        inconsistent = False
-                        break
+                        print("Parent can achieve both states")
+                        return False
                     else:
                         print("inconsistent")
                         inconsistent = True
