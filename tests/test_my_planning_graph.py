@@ -66,6 +66,7 @@ class TestPlanningGraphMutex(unittest.TestCase):
                          "No-op and persistence action incorrectly marked as mutex")
 
     def test_inconsistent_effects_mutex(self):
+        print("teste")
         self.assertTrue(PlanningGraph.inconsistent_effects_mutex(self.pg, self.na4, self.na5),
                         "Canceling effects not marked as mutex")
         self.assertFalse(PlanningGraph.inconsistent_effects_mutex(self.pg, self.na1, self.na2),
@@ -109,6 +110,7 @@ class TestPlanningGraphMutex(unittest.TestCase):
         self.na6.parents.add(self.ns4)
         mutexify(self.na1, self.na6)
         mutexify(self.na2, self.na6)
+        print("="*80)
         self.assertFalse(PlanningGraph.inconsistent_support_mutex(
             self.pg, self.ns1, self.ns2),
             "If one parent action can achieve both states, should NOT be inconsistent-support mutex, even if parent actions are themselves mutex")
