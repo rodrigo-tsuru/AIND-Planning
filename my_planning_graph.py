@@ -508,13 +508,10 @@ class PlanningGraph():
         for node_a1 in node_s1.parents:
             for node_a2 in node_s2.parents:
                 if len(node_a2.mutex) > 0 and node_a1 in node_a2.mutex:
-                    print("mutex parents")
                     if {node_s1, node_s2} <= node_a2.children:
                         #If one parent action can achieve both states, should NOT be inconsistent-support mutex, even if parent actions are themselves mutex
-                        print("Parent can achieve both states")
                         return False
                     else:
-                        print("inconsistent")
                         inconsistent = True
 
         return inconsistent
@@ -531,7 +528,6 @@ class PlanningGraph():
             goal_sNode = PgNode_s(goal,True)
             level = 0
             for s_level in self.s_levels:
-                print("level: " + str(level))
                 if goal_sNode in s_level:
                     level_sum += level
                     break
